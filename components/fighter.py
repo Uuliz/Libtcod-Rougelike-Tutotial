@@ -3,17 +3,18 @@ from components.ai import ConfusedMonster
 from game_messages import Message
 
 class Fighter:
-    def __init__(self, hp, defence, power):
+    def __init__(self, hp, defence, power, xp=0):
         self.max_hp = hp
         self.hp = hp
         self.defence = defence
         self.power = power
+        self.xp = xp
 
     def take_damage(self, amount):
         results = []
         self.hp -= amount
         if self.hp <= 0:
-            results.append({'dead': self.owner})
+            results.append({'dead': self.owner, 'xp': self.xp})
         return results
 
     def heal(self, amount):
